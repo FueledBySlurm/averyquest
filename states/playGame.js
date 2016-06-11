@@ -92,6 +92,7 @@ playGame.prototype = {
   },
   update: function() {
     if(!drunk.stillAlive() || player.body.top > 790) {
+      clearAveryCoin();
       this.game.state.start("GameOver");
     }
     this.game.physics.arcade.collide(player, layer);
