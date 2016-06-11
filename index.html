@@ -26,6 +26,9 @@
       var drunkThreshold = 90;
       var normalControls = true;
       var averyCoins = 0;
+      var coorsCanDensity = 10;
+      var averyCanDesity = 8;
+      var averyCoinDesity = 3;
 
 
 
@@ -113,6 +116,7 @@
 
           scoreString = 'Avery Coins: ';
           scoreText = game.add.text(10, 10, scoreString + averyCoins, { font: '34px Arial', fill: '#fff' });
+          scoreText.fixedToCamera = true
 
           addAveryCoins(game)
           addAveryBeers(game)
