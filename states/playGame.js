@@ -98,8 +98,8 @@ playGame.prototype = {
 
     this.game.physics.arcade.gravity.y = worldGravity;
     if(!drunk.stillAlive() || player.body.top > 540) {
-
       clearAveryCoin();
+      clearGravityBonus(this.game);
       this.game.state.start("GameOver");
     }
     this.game.physics.arcade.collide(player, layer);

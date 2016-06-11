@@ -112,10 +112,10 @@ function collectAveryBeer (beer, drunk) {
     drunk.adjust(beer.abv);
     messageText.text = "Scored a "+beer.AveryName+"! +"+beer.abv+"%ABV";
     beer.kill();
-    worldGravity -= beer.hopValue
     setTimeout(function(){
         if(beer.hopValue > 0) {
             messageText.text = "Hoppy beer! get increase in hop";
+            gravityBonus(beer.hopValue)
         }
         setTimeout(function(){
             messageText.text = "";
@@ -123,7 +123,12 @@ function collectAveryBeer (beer, drunk) {
     }, 1500);
 
 }
-
+function gravityBonus(hopValue){
+    worldGravity = Math.max(150, worldGravity - hopValue)
+}
+function clearGravityBonus(game){
+    game.physics.arcade.gravity.y = 250
+}
 
 function addBadBeers(game){
     badBeer = game.add.group();
