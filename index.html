@@ -4,13 +4,15 @@
         <meta charset="UTF-8" />
         <title>hello phaser!</title>
         <script src="//cdn.jsdelivr.net/phaser/2.4.8/phaser.js"></script>
-        <!-- <script src="starstruck.js"></script> -->
+        <script src="assets/phaserHealthbar.js"></script>
     </head>
     <body>
       <script type="text/javascript">
     window.onload = function() {
+      var gameWidth = 800;
+      var gameHeight = 600;
 
-      var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
+      var game = new Phaser.Game(gameWidth, gameHeight, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
 
       function preload() {
 
@@ -40,7 +42,7 @@
 
           game.stage.backgroundColor = '#000000';
 
-          bg = game.add.tileSprite(0, 0, 800, 600, 'background');
+          bg = game.add.tileSprite(0, 0, gameWidth, gameHeight, 'background');
           bg.fixedToCamera = true;
 
           map = game.add.tilemap('level1');
@@ -52,11 +54,26 @@
           layer = map.createLayer('Tile Layer 1');
 
           //  Un-comment this on to see the collision tiles
-          // layer.debug = true;
+          //layer.debug = true;
 
           layer.resizeWorld();
 
           game.physics.arcade.gravity.y = 250;
+
+          //Add the Drunk meter
+          var barConfig = {
+              x: 650,
+              y: 30,
+              bg: {
+                  color: '#A7A9AB',
+              },
+                bar: {
+              color: '#D6DF23',
+            },
+          };
+
+          this.myHealthBar = new HealthBar(this.game, barConfig);
+          this.myHealthBar.setPercent(10);
 
           player = game.add.sprite(32, 32, 'dude');
           game.physics.enable(player, Phaser.Physics.ARCADE);
@@ -73,6 +90,8 @@
 
           cursors = game.input.keyboard.createCursorKeys();
           jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+
+          window.graphics = graphics;
 
       }
 
@@ -139,28 +158,6 @@
 
     }
     </script>
-    <!-- <--script type="text/javascript">
-
-    window.onload = function() {
-
-        var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create });
-
-        function preload () {
-
-            game.load.image('logo', 'phaser.png');
-
-        }
-
-        function create () {
-
-            var logo = game.add.sprite(game.world.centerX, game.world.centerY, 'logo');
-            logo.anchor.setTo(0.5, 0.5);
-
-        }
-
-    };
-
-  </script> -->
 
     </body>
 </html>
