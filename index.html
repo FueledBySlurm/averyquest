@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <title>hello phaser!</title>
+    <title>AVERYQUEST</title>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
     <script src="assets/data.js"></script>
     <script src="assets/phaser.js"></script>
@@ -11,6 +11,7 @@
     <script src="assets/drunk.js"></script>
     <script src="states/preload.js"></script>
     <script src="states/startScreen.js"></script>
+    <script src="states/startStory.js"></script>
     <script src="states/playGame.js"></script>
     <script src="states/gameOver.js"></script>
     <script type="text/javascript">
@@ -21,11 +22,21 @@
 
         game.state.add("Preload", preload);
         game.state.add("StartScreen", startScreen);
+        game.state.add("StartStory", startStory);
         game.state.add("PlayGame", playGame);
         game.state.add("GameOver", gameOver);
         game.state.start("Preload");
     })();
     </script>
+    <style>
+    canvas {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    }
+    </style>
 </head>
 <body>
 </body>

@@ -95,9 +95,10 @@ playGame.prototype = {
     addBadBeers(this.game)
   },
   update: function() {
-    this.game.physics.arcade.gravity.y = worldGravity;
 
-    if(!drunk.stillAlive() || player.body.top > 790) {
+    this.game.physics.arcade.gravity.y = worldGravity;
+    if(!drunk.stillAlive() || player.body.top > 540) {
+
       clearAveryCoin();
       this.game.state.start("GameOver");
     }
@@ -174,16 +175,11 @@ playGame.prototype = {
   },
   createInvisibleWalls: function() {
     wallLeft = this.game.add.tileSprite((8*4), 0, 8, this.game.height, 'blank');
-    //wallRight = this.game.add.tileSprite(this.game.width-(8*4), 0, 8, this.game.height, 'blank');
 
-    //this.game.physics.enable([ wallLeft, wallRight ], Phaser.Physics.ARCADE);
     this.game.physics.enable([wallLeft], Phaser.Physics.ARCADE);
 
     wallLeft.body.immovable = true;
     wallLeft.body.allowGravity = false;
-
-    // wallRight.body.immovable = true;
-    // wallRight.body.allowGravity = false;
   },
   collectCoin: function(player, star) {
     collectAveryCoin(star);
