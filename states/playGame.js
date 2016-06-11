@@ -173,16 +173,11 @@ playGame.prototype = {
   },
   createInvisibleWalls: function() {
     wallLeft = this.game.add.tileSprite((8*4), 0, 8, this.game.height, 'blank');
-    //wallRight = this.game.add.tileSprite(this.game.width-(8*4), 0, 8, this.game.height, 'blank');
 
-    //this.game.physics.enable([ wallLeft, wallRight ], Phaser.Physics.ARCADE);
     this.game.physics.enable([wallLeft], Phaser.Physics.ARCADE);
 
     wallLeft.body.immovable = true;
     wallLeft.body.allowGravity = false;
-
-    // wallRight.body.immovable = true;
-    // wallRight.body.allowGravity = false;
   },
   collectCoin: function(player, star) {
     collectAveryCoin(star);
