@@ -78,7 +78,7 @@
           drunkPercent = 20;
           drunkBar = new HealthBar(this.game, barConfig);
           drunkBar.setPercent(drunkPercent);
-
+          drunkDecay();
 
           player = game.add.sprite(32, 32, 'dude');
           game.physics.enable(player, Phaser.Physics.ARCADE);
@@ -159,6 +159,14 @@
               jumpTimer = game.time.now + 750;
           }
 
+      }
+
+      function drunkDecay() {
+          game.time.events.loop(Phaser.Timer.SECOND, function() {
+              drunkPercent = drunkPercent - 1;
+              drunkBar.setPercent(drunkPercent);
+          },
+          this);
       }
 
       function render () {
