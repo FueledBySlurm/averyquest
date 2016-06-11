@@ -21,7 +21,8 @@ Drunk.prototype = {
     drunkPercent = 20;
     drunkBar = new HealthBar(game, barConfig);
     drunkBar.setPercent(drunkPercent);
-
+    drunkMeterLabel = game.add.text(530, 20,'Drunk Meter', { font: '15px Arial', fill: '#2F6CD6' });
+    drunkMeterLabel.fixedToCamera = true
     this.drunkDecay(game);
   },
   drunkDecay: function(game) {

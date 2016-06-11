@@ -15,7 +15,7 @@ var playGame = function(game) {
   gameHeight = 600;
   drunkThreshold = 90;
   normalControls = true;
-
+  worldGravity = 250;
   averyCoins = 0;
   coorsCanDensity = 10;
   averyCanDesity = 6;
@@ -53,7 +53,7 @@ playGame.prototype = {
 
     layer.resizeWorld();
 
-    this.game.physics.arcade.gravity.y = 250;
+    this.game.physics.arcade.gravity.y = worldGravity;
     //invisble walls
     //this.createInvisibleWalls()
 
@@ -81,11 +81,10 @@ playGame.prototype = {
     scoreString = ' = ';
     scoreText = this.game.add.text(30, 10, scoreString + averyCoins, { font: '25px Arial', fill: '#000' });
     scoreText.fixedToCamera = true
+
     averyCoin = this.game.add.image(10, 10, 'averyCoin')
     averyCoin.scale.setTo(.5, .5)
     averyCoin.fixedToCamera = true
-    // var coin = averyCoin.create(;
-
 
     messageString = '';
     messageText = this.game.add.text(515, 55, messageString, { font: '18px Arial', fill: '#000' });
@@ -96,6 +95,8 @@ playGame.prototype = {
     addBadBeers(this.game)
   },
   update: function() {
+    this.game.physics.arcade.gravity.y = worldGravity;
+
     if(!drunk.stillAlive() || player.body.top > 790) {
       clearAveryCoin();
       this.game.state.start("GameOver");

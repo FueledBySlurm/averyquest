@@ -17,27 +17,27 @@ var tapRoom = function(){
             return false;
         },
         addBeer: function(beer){
+
             if (!this.validate(beer) || this.beers.length > 30){
                 return
             }
             var unique = true;
+            var hopValue = 0;
+            if(beer.hoppy){
+                hopValue = 8 * parseFloat(beer.abv);
+            }
             $.each(this.beers, function(i, current){
                 if(current.id == beer.id) {
-                    if (! current.hasOwnProperty('hoppy')){
-                        current.hoppy = true
-                    }
                     unique = false
+                    if(current.hoppy || beer.hoppy){
+                        app.beers[i].hopValue = hopValue
+                    }
                 }
             });
             if (! unique){
                 return
             }
-            var hopValue;
-            if(!beer.hasOwnProperty('hoppy')){
-                hopValue = 10.00;
-            } else {
-                hopValue = 10.00 + parseFloat(beer.abv)
-            }
+
             this.beers.push({
                 "id": beer.id,
                 "abv": parseFloat(beer.abv),
@@ -59,6 +59,7 @@ var tapRoom = function(){
                 "async": false,
                 success: function(data){
                     $.each(data.beers, function(i, beer){
+                        beer.hoppy = false
                         app.addBeer(beer)
                     });
                 },
@@ -137,6 +138,7 @@ $(document).ready(function(){
         "Raja",
         "Barrel-Aged Sour",
         "the-czar",
+        "the-maharaja",
 
     ]
     tapRoom();
