@@ -22,22 +22,23 @@ endStory.prototype = {
 		},
 		this);
 
+		this.game.time.events.add(Phaser.Timer.SECOND*7, function() {
+			this.playTheGame();
+		},
+		this);
+
 		// UNCOMMENT THIS FOR FINAL VERSION
 		// this.game.time.events.add(Phaser.Timer.SECOND*6, function() {
 		// 	this.playTheGame();
 		// },
 		// this);
 		//REMOVE THIS FOR FINAL VERSION
-		playButton = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+		//playButton = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
 	},
 	update: function() {
-		if (playButton.isDown)
-		{
-			this.playTheGame();
-		}
 	},
 	playTheGame: function(){
-		this.game.state.start("StartScreen");
+		this.game.state.start("TheEnd");
 	}
 }

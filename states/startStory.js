@@ -96,6 +96,6 @@ startStory.prototype = {
 	update: function() {
 	},
 	playTheGame: function(){
-		this.game.state.start("PlayGame");
+		this.game.state.start("EndStory"); //DEBUG DON"T COMMIT THIS
 	}
 }

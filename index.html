@@ -16,6 +16,7 @@
     <script src="states/playGame.js"></script>
     <script src="states/endStory.js"></script>
     <script src="states/gameOver.js"></script>
+    <script src="states/theEnd.js"></script>
     <script type="text/javascript">
     (function() {
         var gameWidth = 800;
@@ -28,6 +29,7 @@
         game.state.add("StartStory", startStory);
         game.state.add("PlayGame", playGame);
         game.state.add("EndStory", endStory);
+        game.state.add("TheEnd", theEnd);
         game.state.add("GameOver", gameOver);
         game.state.start("Preload");
     })();
