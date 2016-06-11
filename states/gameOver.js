@@ -15,6 +15,6 @@ gameOver.prototype = {
 		}
 	},
 	playTheGame: function(){
-		this.game.state.start("StartScreen");
+		this.game.state.start("PlayGame");
 	}
 }
