@@ -65,7 +65,7 @@ playGame.prototype = {
     player = this.game.add.sprite(32, 32, 'dude');
     this.game.physics.enable(player, Phaser.Physics.ARCADE);
 
-    nautCt = this.game.add.image(4920, 400, 'StreetSign')
+    nautCt = this.game.add.sprite(4920, 400, 'StreetSign')
     this.game.physics.enable(nautCt, Phaser.Physics.ARCADE);
 
     player.body.bounce.y = 0.2;
