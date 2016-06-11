@@ -78,12 +78,17 @@ playGame.prototype = {
     cursors = this.game.input.keyboard.createCursorKeys();
     jumpButton = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
-    scoreString = 'Avery Coins: ';
-    scoreText = this.game.add.text(10, 10, scoreString + averyCoins, { font: '25px Arial', fill: '#000' });
+    scoreString = ' = ';
+    scoreText = this.game.add.text(30, 10, scoreString + averyCoins, { font: '25px Arial', fill: '#000' });
     scoreText.fixedToCamera = true
+    averyCoin = this.game.add.image(10, 10, 'averyCoin')
+    averyCoin.scale.setTo(.5, .5)
+    averyCoin.fixedToCamera = true
+    // var coin = averyCoin.create(;
+
 
     messageString = '';
-    messageText = this.game.add.text(525, 55, messageString, { font: '18px Arial', fill: '#000' });
+    messageText = this.game.add.text(515, 55, messageString, { font: '18px Arial', fill: '#000' });
     messageText.fixedToCamera = true
 
     addAveryCoins(this.game)
