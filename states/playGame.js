@@ -8,7 +8,7 @@ var playGame = function(game) {
   var cursors;
   var jumpButton;
   var background;
-  var drunkPercent;
+  var drunk;
   backgrounds = []
   gameWidth = 800;
   gameHeight = 600;
@@ -52,24 +52,8 @@ playGame.prototype = {
     this.game.physics.arcade.gravity.y = 250;
 
     //Add the Drunk meter
-    var barConfig = {
-      x: 650,
-      y: 30,
-      bg: {
-        color: '#A7A9AB'
-      },
-      bar: {
-        color: '#D6DF23'
-      },
-      isFixedToCamera: true
-    };
-
-
-    drunkPercent = 20;
-    drunkBar = new HealthBar(this.game, barConfig);
-    drunkBar.setPercent(drunkPercent);
-
-    this.drunkDecay();
+    drunk = new Drunk();
+    drunk.makeBar(this.game);
 
     player = this.game.add.sprite(32, 32, 'dude');
     this.game.physics.enable(player, Phaser.Physics.ARCADE);
@@ -105,15 +89,13 @@ playGame.prototype = {
     this.game.physics.arcade.collide(averyCoin, layer);
     this.game.physics.arcade.collide(averyBeer, layer);
     this.game.physics.arcade.collide(badBeer, layer);
-    this.game.physics.arcade.overlap(player, averyCoin, collectAveryCoin, null, this);
-    this.game.physics.arcade.overlap(player, averyBeer, collectAveryBeer, null, this);
-    this.game.physics.arcade.overlap(player, badBeer, hitBadBeer, null, this);
+    this.game.physics.arcade.overlap(player, averyCoin, this.collectCoin, null, this);
+    this.game.physics.arcade.overlap(player, averyBeer, this.collectBeer, null, this);
+    this.game.physics.arcade.overlap(player, badBeer, this.collideBadBeer, null, this);
 
     player.body.velocity.x = 0;
 
-    if(drunkPercent >= 90) {
-      normalControls = false;
-    }
+    normalControls = drunk.getNormalControlMode();
 
     if (cursors.left.isDown)
     {
@@ -166,18 +148,20 @@ playGame.prototype = {
       jumpTimer = this.game.time.now + 750;
     }
   },
-  drunkDecay: function() {
-    this.game.time.events.loop(Phaser.Timer.SECOND, function() {
-      drunkPercent = drunkPercent - 1;
-      drunkBar.setPercent(drunkPercent);
-    },
-    this);
-  },
   render: function() {
 
     // game.debug.text(game.time.physicsElapsed, 32, 32);
     // game.debug.body(player);
     // game.debug.bodyInfo(player, 16, 24);
 
+  },
+  collectCoin: function(player, star) {
+    collectAveryCoin(star);
+  },
+  collideBadBeer: function(player, beer) {
+    hitBadBeer(beer, drunk);
+  },
+  collectBeer: function(player, beer) {
+    collectAveryBeer(beer, drunk);
   }
 }
