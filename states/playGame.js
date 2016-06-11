@@ -39,6 +39,9 @@ playGame.prototype = {
     map.addTilesetImage('tiles-2');
     map.addTilesetImage('GroundTile');
     map.addTilesetImage('LavaSpikes');
+    map.addTilesetImage('StreetSign');
+    map.addTilesetImage('RoadTile');
+    map.addTilesetImage('Taphouse');
 
     map.setCollisionByExclusion([ 13, 14, 15, 16, 46, 47, 48, 49, 50, 51 ]);
 
