@@ -4,8 +4,8 @@ var theEnd = function(game) {
 
 theEnd.prototype = {
   create: function(){
-		this.game.load.image('gameOver');
-		background = this.game.add.tileSprite(1, 1, 800, 600, 'gameOver');
+		this.game.load.image('endScene');
+		background = this.game.add.tileSprite(1, 1, 800, 600, 'endScene');
 		restartButton = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 	},
 	update: function() {
