@@ -43,7 +43,7 @@ function addBadBeers(game){
     badBeer.enableBody = true;
     for (var i = 0; i < 5; i++)
     {
-        var star = badBeer.create(i * 80, 0, 'droid');
+        var star = badBeer.create(i * 80, 0, 'coorsCan');
         star.body.gravity.y = 6;
         star.body.bounce.y = 0.7 + Math.random() * 0.2;
     }
