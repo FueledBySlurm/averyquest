@@ -131,7 +131,7 @@ HealthBar.prototype.setFixedToCamera = function(fixedToCamera) {
 };
 
 //Call to kill the healthBar if you want to make it disappear after character dies
-HealthBar.prototype.kill() = function() {
+HealthBar.prototype.kill = function() {
  this.bgSprite.kill();
  this.barSprite.kill();
 };
