@@ -1,6 +1,7 @@
 var Drunk = function(game) {
   this.game = game;
   var drunkPercent;
+  isAlive = true;
   drunkThreshold = 90;
 }
 
@@ -55,10 +56,14 @@ Drunk.prototype = {
     if(drunkPercent === 0)
     {
       player.kill();
+      isAlive = false;
     }
     else {
       drunkPercent = 0;
       drunkBar.setPercent(drunkPercent);
     }
+  },
+  stillAlive: function() {
+    return isAlive;
   }
 }
