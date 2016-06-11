@@ -22,6 +22,7 @@
       var cursors;
       var jumpButton;
       var background;
+      var backgrounds = []
       var drunkPercent;
       var drunkThreshold = 90;
       var normalControls = true;
@@ -38,8 +39,8 @@
           game.load.tilemap('level1', 'assets/test5.json', null, Phaser.Tilemap.TILED_JSON);
           game.load.image('tiles-2', 'assets/Tile.png');
           game.load.image('GroundTile', 'assets/GroundTile.png');
-          game.load.spritesheet('dude', 'assets/games/starstruck/dude.png', 32, 48);
-          game.load.spritesheet('coorsCan', 'assets/CoorsCan.png', 50, 100);
+          game.load.spritesheet('dude', 'assets/CheadleSprite.png', 50, 60);
+          game.load.spritesheet('coorsCan', 'assets/ZoorsCan.png', 50, 100);
           game.load.image('averyCoin', 'assets/AveryCoin.png');
           game.load.image('starBig', 'assets/games/starstruck/star2.png');
           game.load.image('background', 'assets/BG.png');
@@ -53,8 +54,13 @@
 
           game.stage.backgroundColor = '#000000';
 
-          background = game.add.tileSprite(-15, 0, 2400, gameWidth, 'background');
-          background.fixedToCamera = false;
+
+          var backgroundoffset = -15
+          for (i = 0; i < 5; i++) {
+            backgrounds[i] = game.add.tileSprite(backgroundoffset, 0, 2400, gameWidth, 'background');
+            backgroundoffset = backgroundoffset + 2400
+          }
+          backgrounds[1].fixedToCamera = false;
 
           map = game.add.tilemap('level1');
 
@@ -126,6 +132,7 @@
           game.physics.arcade.overlap(player, badBeer, hitBadBeer, null, this);
 
           player.body.velocity.x = 0;
+          //background.tilePosition.x -= 1;
 
           if(drunkPercent >= drunkThreshold) {
               normalControls = false;
