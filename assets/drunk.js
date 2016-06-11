@@ -18,7 +18,7 @@ Drunk.prototype = {
       },
       isFixedToCamera: true
     };
-    drunkPercent = 80;
+    drunkPercent = 20;
     drunkBar = new HealthBar(game, barConfig);
     drunkBar.setPercent(drunkPercent);
 
@@ -26,8 +26,7 @@ Drunk.prototype = {
   },
   drunkDecay: function(game) {
     game.time.events.loop(Phaser.Timer.SECOND, function() {
-      this.adjust(-1);
-      //drunkBar.setPercent(drunkPercent);
+      this.adjust(-2);
     },
     this);
   },
