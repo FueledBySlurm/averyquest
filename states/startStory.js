@@ -37,16 +37,45 @@ startStory.prototype = {
     this.game.physics.enable(playerIPA, Phaser.Physics.ARCADE);
 		playerIPA.animations.add('right', [5, 6, 7, 8], 10, true);
 
+		this.game.time.events.add(1000, function() {
+			chat = this.game.add.sprite(32, 340, 'chat1');
+		},
+		this);
+
+		this.game.time.events.add(4000, function() {
+			chat.kill()
+			chat = this.game.add.sprite(32, 340, 'chat2');
+		},
+		this);
+
+		this.game.time.events.add(7000, function() {
+			chat.kill()
+			chat = this.game.add.sprite(32, 340, 'chat3');
+		},
+		this);
+
+		this.game.time.events.add(10000, function() {
+			chat.kill()
+			chat = this.game.add.sprite(32, 340, 'chat4');
+		},
+		this);
+
+		this.game.time.events.add(15000, function() {
+			chat.kill()
+			chat = this.game.add.sprite(32, 340, 'chat5');
+		},
+		this);
+
 		playerIPARun = this.game.add.tween(playerIPA);
 
 		playerIPARun.to({x:400}, 2000);
-		this.game.time.events.add(Phaser.Timer.SECOND*5, function() {
+		this.game.time.events.add(Phaser.Timer.SECOND*15, function() {
 			playerIPA.animations.play('right');
 			playerIPARun.start();
 		},
 		this);
 
-		this.game.time.events.add(Phaser.Timer.SECOND*6, function() {
+		this.game.time.events.add(Phaser.Timer.SECOND*17, function() {
 			this.playTheGame();
 		},
 		this);

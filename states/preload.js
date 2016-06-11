@@ -21,6 +21,13 @@ preload.prototype = {
 		this.game.load.image('hopBig', 'assets/Hopbig.png');
 		this.game.load.image('queenBig', 'assets/Queenbig.png');
 		this.game.load.image('instructions', 'assets/INSTRUCTIONS.png');
+		this.game.load.image('chat1', 'assets/Chat1.png');
+		this.game.load.image('chat2', 'assets/Chat2.png');
+		this.game.load.image('chat3', 'assets/Chat3.png');
+		this.game.load.image('chat4', 'assets/Chat4.png');
+		this.game.load.image('chat5', 'assets/Chat5.png');
+		this.game.load.image('chat6', 'assets/Chat5.png');
+		this.game.load.image('chat7', 'assets/Chat6.png');
 
         for(var i=0; i < tapRoom.beers.list.length; i++){
             this.game.load.image(tapRoom.beers.list[i].id, tapRoom.beers.list[i].image);
