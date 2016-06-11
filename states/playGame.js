@@ -97,6 +97,9 @@ playGame.prototype = {
     addAveryCoins(this.game)
     addAveryBeers(this.game)
     addBadBeers(this.game)
+    music = this.game.add.audio('boden');
+
+    music.play();
   },
   update: function() {
 
@@ -191,7 +194,7 @@ playGame.prototype = {
     collectAveryCoin(star);
   },
   collideBadBeer: function(player, beer) {
-    hitBadBeer(beer, drunk);
+    hitBadBeer(beer, drunk, this.game);
   },
   collectBeer: function(player, beer) {
     collectAveryBeer(beer, drunk);

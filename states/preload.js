@@ -36,6 +36,8 @@ preload.prototype = {
             this.game.load.image(tapRoom.beers.list[i].id, tapRoom.beers.list[i].image);
         }
 
+        this.game.load.audio('boden', ['assets/Epic_Ride_mixdown.mp3']);
+
 	},
 	create: function(){
 		this.game.state.start("StartScreen");

@@ -161,11 +161,12 @@ function addBadBeers(game){
 }
 
 
-function hitBadBeer(beer, drunk) {
+function hitBadBeer(beer, drunk, game) {
     messageText.text = "Shitty Beer X_X...Sober up!";
     setTimeout(function(){
         messageText.text = "";
     }, 3000);
     drunk.clear();
     beer.kill();
+
 }
