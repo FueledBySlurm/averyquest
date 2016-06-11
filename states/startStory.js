@@ -94,10 +94,6 @@ startStory.prototype = {
 
 	},
 	update: function() {
-		if (playButton.isDown)
-		{
-			this.playTheGame();
-		}
 	},
 	playTheGame: function(){
 		this.game.state.start("PlayGame");

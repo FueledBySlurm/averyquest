@@ -11,6 +11,17 @@ endStory.prototype = {
 
 		playerIPA = this.game.add.sprite(250, 450, 'queenBig');
 
+		this.game.time.events.add(1000, function() {
+			chat = this.game.add.sprite(32, 160, 'chat8');
+		},
+		this);
+
+		this.game.time.events.add(4000, function() {
+			chat.kill()
+			chat = this.game.add.sprite(32, 160, 'chat9');
+		},
+		this);
+
 		// UNCOMMENT THIS FOR FINAL VERSION
 		// this.game.time.events.add(Phaser.Timer.SECOND*6, function() {
 		// 	this.playTheGame();
