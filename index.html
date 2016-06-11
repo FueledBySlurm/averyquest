@@ -22,7 +22,7 @@
           game.load.spritesheet('droid', 'assets/games/starstruck/droid.png', 32, 32);
           game.load.image('starSmall', 'assets/games/starstruck/star.png');
           game.load.image('starBig', 'assets/games/starstruck/star2.png');
-          game.load.image('background', 'assets/games/starstruck/background2.png');
+          game.load.image('background', 'assets/BG.png');
 
       }
 
@@ -34,7 +34,7 @@
       var jumpTimer = 0;
       var cursors;
       var jumpButton;
-      var bg;
+      var background;
 
       function create() {
 
@@ -42,8 +42,8 @@
 
           game.stage.backgroundColor = '#000000';
 
-          bg = game.add.tileSprite(0, 0, gameWidth, gameHeight, 'background');
-          bg.fixedToCamera = true;
+          background = game.add.tileSprite(-15, 0, 2400, 800, 'background');
+          background.fixedToCamera = false;
 
           map = game.add.tilemap('level1');
 
@@ -64,7 +64,7 @@
           var barConfig = {
               x: 650,
               y: 30,
-              bg: {
+              background: {
                   color: '#A7A9AB',
               },
                 bar: {
@@ -113,6 +113,7 @@
           }
           else if (cursors.right.isDown)
           {
+              //background.tilePosition.x += 0.5;
               player.body.velocity.x = 150;
 
               if (facing != 'right')
