@@ -93,14 +93,15 @@ playGame.prototype = {
     scoreText.fixedToCamera = true
 
     messageString = '';
-    scoreText = this.game.add.text(10, 10, messageString, { font: '25px Arial', fill: '#000' });
-    scoreText.fixedToCamera = true
+    messageText = this.game.add.text(525, 55, messageString, { font: '18px Arial', fill: '#000' });
+    messageText.fixedToCamera = true
 
     addAveryCoins(this.game)
     addAveryBeers(this.game)
     addBadBeers(this.game)
   },
   update: function() {
+      console.log(player.x)
     this.game.physics.arcade.collide(player, layer);
     this.game.physics.arcade.collide(averyCoin, layer);
     this.game.physics.arcade.collide(averyBeer, layer);
