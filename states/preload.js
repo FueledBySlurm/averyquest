@@ -11,6 +11,10 @@ preload.prototype = {
 		this.game.load.image('starBig', 'assets/games/starstruck/star2.png');
 		this.game.load.image('background', 'assets/BG.png');
 		this.game.load.image('startScreen', 'assets/TitleScreen.png');
+
+        for(var i=0; i < tapRoom.beers.list.length; i++){
+            this.game.load.image(tapRoom.beers.list[i].id, tapRoom.beers.list[i].image);
+        }
 	},
 	create: function(){
 		this.game.state.start("StartScreen");

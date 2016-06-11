@@ -39,7 +39,7 @@ var tapRoom = function(){
                 "id": beer.id,
                 "abv": parseFloat(beer.abv),
                 "name": beer.name,
-                "image": "",
+                "image": beer.label_image.original,
                 "hopValue": hopValue
             });
         },
@@ -53,6 +53,7 @@ var tapRoom = function(){
             $.ajax({
                 "url": "http://apis.mondorobot.com/taproom/on-tap",
                 "dataType": "json",
+                "async": false,
                 success: function(data){
                     $.each(data.beer_list.beers, function(i, beer){
                         app.addBeer(beer)
@@ -67,6 +68,7 @@ var tapRoom = function(){
             $.ajax({
                 "url": "http://apis.mondorobot.com/beers",
                 "dataType": "json",
+                "async": false,
                 "data": {
                     "categories": "Hop-forward"
                 },
@@ -85,6 +87,7 @@ var tapRoom = function(){
             $.ajax({
                 url: "http://apis.mondorobot.com/taproom/menu",
                 dataType: "json",
+                "async": false,
                 success: function(data){
                     $.each(data.menu.menu_sections, function(i, section){
                         if (section.title == "Dining Menu"){

@@ -17,7 +17,7 @@ var playGame = function(game) {
 
   averyCoins = 0;
   coorsCanDensity = 10;
-  averyCanDesity = 8;
+  averyCanDesity = 6;
   averyCoinDesity = 3;
 }
 

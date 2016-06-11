@@ -5,9 +5,9 @@ function addAveryCoins(game){
     var space = game.width/this.averyCoinDesity
     var fixedLocations = [
         {x:1000,y:100},
-        {x:1005,y:100},
-        {x:1008,y:100},
-        {x:1012,y:100},
+        {x:1030,y:100},
+        {x:1060,y:100},
+        {x:1090,y:100},
     ]
     var addCan = function(x, y){
         var coin = averyCoin.create(x, y, 'averyCoin');
@@ -33,6 +33,9 @@ function collectAveryCoin (player, star) {
 }
 
 function addAveryBeers(game){
+    // for(var i=0; i < )
+
+    // game.load.image('averyBeer', 'https://avery-ipas-apis.s3.amazonaws.com/uploads/beer/label_image/14/desktop2x_1454200635_Joes-Pilsner.png');
     averyBeer = game.add.group();
     averyBeer.enableBody = true;
     var currLocation = 0;
@@ -41,13 +44,15 @@ function addAveryBeers(game){
         {x:380,y:100},
     ]
     var addCan = function(x, y){
-        var beer = averyBeer.create(x, y, 'starBig');
+        beerListIndex = Math.floor(Math.random() * tapRoom.beers.list.length)
+        // var beer = averyBeer.create(x, y, tapRoom.beers.list[beerListIndex].id);
+        var beer = averyBeer.create(x, y, "joe-s-pils");
         beer.scale.setTo(.5, .5)
         beer.body.gravity.y = 6;
         beer.body.bounce.y = 0.7 + Math.random() * 0.2;
         //db data
-        beerListIndex = Math.floor(Math.random() * tapRoom.beers.list.length)
-        beer.abv = tapRoom.beers.list[beerListIndex].hopValue;
+
+        beer.abv = tapRoom.beers.list[beerListIndex].abv;
         beer.AveryName = tapRoom.beers.list[beerListIndex].name;
     }
     for(var i=0; i < fixedLocations.length; i += 1){
