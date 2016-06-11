@@ -38,44 +38,56 @@ startStory.prototype = {
 		playerIPA.animations.add('right', [5, 6, 7, 8], 10, true);
 
 		this.game.time.events.add(1000, function() {
-			chat = this.game.add.sprite(32, 340, 'chat1');
+			chat = this.game.add.sprite(32, 160, 'chat1');
 		},
 		this);
 
 		this.game.time.events.add(4000, function() {
 			chat.kill()
-			chat = this.game.add.sprite(32, 340, 'chat2');
+			chat = this.game.add.sprite(32, 160, 'chat2');
 		},
 		this);
 
 		this.game.time.events.add(7000, function() {
 			chat.kill()
-			chat = this.game.add.sprite(32, 340, 'chat3');
+			chat = this.game.add.sprite(32, 160, 'chat3');
 		},
 		this);
 
 		this.game.time.events.add(10000, function() {
 			chat.kill()
-			chat = this.game.add.sprite(32, 340, 'chat4');
+			chat = this.game.add.sprite(32, 160, 'chat4');
 		},
 		this);
 
 		this.game.time.events.add(15000, function() {
 			chat.kill()
-			chat = this.game.add.sprite(32, 340, 'chat5');
+			chat = this.game.add.sprite(32, 160, 'chat5');
+		},
+		this);
+
+		this.game.time.events.add(18000, function() {
+			chat.kill()
+			chat = this.game.add.sprite(32, 160, 'chat6');
+		},
+		this);
+
+		this.game.time.events.add(21000, function() {
+			chat.kill()
+			chat = this.game.add.sprite(32, 160, 'chat7');
 		},
 		this);
 
 		playerIPARun = this.game.add.tween(playerIPA);
 
 		playerIPARun.to({x:400}, 2000);
-		this.game.time.events.add(Phaser.Timer.SECOND*15, function() {
+		this.game.time.events.add(Phaser.Timer.SECOND*23, function() {
 			playerIPA.animations.play('right');
 			playerIPARun.start();
 		},
 		this);
 
-		this.game.time.events.add(Phaser.Timer.SECOND*17, function() {
+		this.game.time.events.add(Phaser.Timer.SECOND*24, function() {
 			this.playTheGame();
 		},
 		this);
