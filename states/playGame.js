@@ -38,6 +38,7 @@ playGame.prototype = {
 
     map.addTilesetImage('tiles-2');
     map.addTilesetImage('GroundTile');
+    map.addTilesetImage('LavaSpikes');
 
     map.setCollisionByExclusion([ 13, 14, 15, 16, 46, 47, 48, 49, 50, 51 ]);
 
@@ -74,7 +75,7 @@ playGame.prototype = {
     this.game.physics.enable(player, Phaser.Physics.ARCADE);
 
     player.body.bounce.y = 0.2;
-    player.body.collideWorldBounds = true;
+    player.body.collideWorldBounds = false;
     player.body.setSize(20, 32, 5, 16);
 
     player.animations.add('left', [0, 1, 2, 3], 10, true);
