@@ -9,6 +9,7 @@ var playGame = function(game) {
   var jumpButton;
   var background;
   var drunk;
+  var wallLeft
   backgrounds = []
   gameWidth = 800;
   gameHeight = 600;
@@ -26,7 +27,7 @@ playGame.prototype = {
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
     this.game.stage.backgroundColor = '#000000';
-
+    this.createInvisibleWalls()
     var backgroundoffset = -15
     for (i = 0; i < 5; i++) {
       backgrounds[i] = this.game.add.tileSprite(backgroundoffset, 0, 2400, gameWidth, 'background');
@@ -53,6 +54,8 @@ playGame.prototype = {
     layer.resizeWorld();
 
     this.game.physics.arcade.gravity.y = 250;
+    //invisble walls
+    //this.createInvisibleWalls()
 
     //Add the Drunk meter
     drunk = new Drunk();
@@ -89,6 +92,7 @@ playGame.prototype = {
   },
   update: function() {
     this.game.physics.arcade.collide(player, layer);
+    this.game.physics.arcade.collide(player, wallLeft);
     this.game.physics.arcade.collide(averyCoin, layer);
     this.game.physics.arcade.collide(averyBeer, layer);
     this.game.physics.arcade.collide(badBeer, layer);
@@ -157,6 +161,19 @@ playGame.prototype = {
     // game.debug.body(player);
     // game.debug.bodyInfo(player, 16, 24);
 
+  },
+  createInvisibleWalls: function() {
+    wallLeft = this.game.add.tileSprite((8*4), 0, 8, this.game.height, 'blank');
+    //wallRight = this.game.add.tileSprite(this.game.width-(8*4), 0, 8, this.game.height, 'blank');
+
+    //this.game.physics.enable([ wallLeft, wallRight ], Phaser.Physics.ARCADE);
+    this.game.physics.enable([wallLeft], Phaser.Physics.ARCADE);
+
+    wallLeft.body.immovable = true;
+    wallLeft.body.allowGravity = false;
+
+    // wallRight.body.immovable = true;
+    // wallRight.body.allowGravity = false;
   },
   collectCoin: function(player, star) {
     collectAveryCoin(star);
