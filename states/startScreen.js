@@ -15,6 +15,6 @@ startScreen.prototype = {
 		}
 	},
 	playTheGame: function(){
-		this.game.state.start("StartStory");
+		this.game.state.start("Instructions");
 	}
 }

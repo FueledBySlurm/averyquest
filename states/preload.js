@@ -20,6 +20,7 @@ preload.prototype = {
 		this.game.load.image('inside', 'assets/Inside.png');
 		this.game.load.image('hopBig', 'assets/Hopbig.png');
 		this.game.load.image('queenBig', 'assets/Queenbig.png');
+		this.game.load.image('instructions', 'assets/INSTRUCTIONS.png');
 
         for(var i=0; i < tapRoom.beers.list.length; i++){
             this.game.load.image(tapRoom.beers.list[i].id, tapRoom.beers.list[i].image);
