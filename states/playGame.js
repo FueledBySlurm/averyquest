@@ -94,12 +94,6 @@ playGame.prototype = {
     addAveryCoins(this.game)
     addAveryBeers(this.game)
     addBadBeers(this.game)
-
-//DEBUG RIP OUT
-    this.game.time.events.add(Phaser.Timer.SECOND*2, function() {
-			this.game.state.start("EndStory");
-		},
-		this);
   },
   update: function() {
     if(!drunk.stillAlive() || player.body.top > 540) {
