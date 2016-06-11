@@ -4,7 +4,7 @@ function addAveryCoins(game){
     averyCoin.enableBody = true;
     for (var i = 0; i < 12; i++)
     {
-        var star = averyCoin.create(i * 70, 0, 'averyCoin');
+        var star = averyCoin.create(i * 70, 0, 'starBig');
         star.body.gravity.y = 6;
         star.body.bounce.y = 0.7 + Math.random() * 0.2;
     }
@@ -22,7 +22,7 @@ function addAveryBeers(game){
     averyBeer.enableBody = true;
     for (var i = 0; i < 12; i++)
     {
-        var beer = averyBeer.create(i * 65, 0, 'starBig');
+        var beer = averyBeer.create(i * 65, 0, 'averyCoin');
         beer.body.gravity.y = 6;
         beer.body.bounce.y = 0.7 + Math.random() * 0.2;
         beerListIndex = Math.floor(Math.random() * tapRoom.beers.list.length)
@@ -53,7 +53,8 @@ function hitBadBeer(player, beer) {
     if(drunkBar.percent == 0){
         player.kill()
     } else {
-        drunkBar.setPercent(0);
+        drunkPercent = 0
+        drunkBar.setPercent(drunkPercent);
     }
     beer.kill();
 }

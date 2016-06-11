@@ -10,6 +10,7 @@
         <script src="assets/averyCoins.js"></script>
     </head>
     <body>
+        <button onclick="startGame()">Start</button>
       <script type="text/javascript">
 
       var map;
@@ -37,7 +38,7 @@
           game.load.tilemap('level1', 'assets/games/starstruck/level1.json', null, Phaser.Tilemap.TILED_JSON);
           game.load.image('tiles-1', 'assets/games/starstruck/tiles-1.png');
           game.load.spritesheet('dude', 'assets/games/starstruck/dude.png', 32, 48);
-          game.load.spritesheet('coorsCan', 'assets/CoorsCan.png', 32, 48);
+          game.load.spritesheet('coorsCan', 'assets/CoorsCan.png', 50, 100);
           game.load.image('averyCoin', 'assets/AveryCoin.png');
           game.load.image('starBig', 'assets/games/starstruck/star2.png');
           game.load.image('background', 'assets/BG.png');
