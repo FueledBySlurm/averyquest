@@ -1,7 +1,6 @@
 # AVERYQUEST  
 ## IPAS AND APIS  
-### CAN'T STOP PARTYING  
-  
+![alt tag](slurm.jpg)  
 ####setup    
 npm install http-server -g    
 http-server ~/averyquest  
