@@ -25,6 +25,8 @@
       var drunkPercent;
       var drunkThreshold = 90;
       var normalControls = true;
+      var averyCoins = 0;
+
 
 
     function startGame() {
@@ -106,6 +108,9 @@
 
           cursors = game.input.keyboard.createCursorKeys();
           jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+
+          scoreString = 'Avery Coins: ';
+          scoreText = game.add.text(10, 10, scoreString + averyCoins, { font: '34px Arial', fill: '#fff' });
 
           addAveryCoins(game)
           addAveryBeers(game)

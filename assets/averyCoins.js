@@ -1,5 +1,4 @@
 function addAveryCoins(game){
-    coinCount = 0;
     averyCoin = game.add.group();
     averyCoin.enableBody = true;
     for (var i = 0; i < 12; i++)
@@ -11,8 +10,8 @@ function addAveryCoins(game){
 }
 function collectAveryCoin (player, star) {
 
-    // Removes the star from the screen
-    coinCount += 1;
+    averyCoins += 1;
+    scoreText.text = scoreString + averyCoins;
     star.kill();
 
 }
