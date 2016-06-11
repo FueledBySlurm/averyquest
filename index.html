@@ -35,8 +35,9 @@
 
       function preload() {
 
-          game.load.tilemap('level1', 'assets/games/starstruck/level1.json', null, Phaser.Tilemap.TILED_JSON);
-          game.load.image('tiles-1', 'assets/games/starstruck/tiles-1.png');
+          game.load.tilemap('level1', 'assets/test5.json', null, Phaser.Tilemap.TILED_JSON);
+          game.load.image('tiles-2', 'assets/Tile.png');
+          game.load.image('GroundTile', 'assets/GroundTile.png');
           game.load.spritesheet('dude', 'assets/games/starstruck/dude.png', 32, 48);
           game.load.spritesheet('coorsCan', 'assets/CoorsCan.png', 50, 100);
           game.load.image('averyCoin', 'assets/AveryCoin.png');
@@ -57,7 +58,8 @@
 
           map = game.add.tilemap('level1');
 
-          map.addTilesetImage('tiles-1');
+          map.addTilesetImage('tiles-2');
+          map.addTilesetImage('GroundTile');
 
           map.setCollisionByExclusion([ 13, 14, 15, 16, 46, 47, 48, 49, 50, 51 ]);
 
