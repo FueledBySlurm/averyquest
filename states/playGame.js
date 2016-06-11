@@ -91,6 +91,9 @@ playGame.prototype = {
     addBadBeers(this.game)
   },
   update: function() {
+    if(!drunk.stillAlive() || player.body.top > 790) {
+      this.game.state.start("StartScreen");
+    }
     this.game.physics.arcade.collide(player, layer);
     this.game.physics.arcade.collide(player, wallLeft);
     this.game.physics.arcade.collide(averyCoin, layer);
