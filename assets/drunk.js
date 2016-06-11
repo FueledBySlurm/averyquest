@@ -25,8 +25,8 @@ Drunk.prototype = {
   },
   drunkDecay: function(game) {
     game.time.events.loop(Phaser.Timer.SECOND, function() {
-      drunkPercent = drunkPercent - 1;
-      drunkBar.setPercent(drunkPercent);
+      this.adjust(-1);
+      //drunkBar.setPercent(drunkPercent);
     },
     this);
   },
