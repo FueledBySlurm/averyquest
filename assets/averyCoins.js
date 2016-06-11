@@ -55,6 +55,10 @@ function collectAveryCoin (star) {
     scoreText.text = scoreString + averyCoins;
     star.kill();
 }
+function clearAveryCoin() {
+    averyCoins = 0;
+    scoreText.text = scoreString + averyCoins;
+}
 
 function addAveryBeers(game){
     mtSanitas = function(){
