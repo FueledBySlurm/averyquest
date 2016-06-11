@@ -8,7 +8,8 @@ var playGame = function(game) {
   var cursors;
   var jumpButton;
   var background;
-  var drunkPercent;
+  var drunk;
+  var wallLeft
   backgrounds = []
   gameWidth = 800;
   gameHeight = 600;
@@ -26,7 +27,7 @@ playGame.prototype = {
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
     this.game.stage.backgroundColor = '#000000';
-
+    this.createInvisibleWalls()
     var backgroundoffset = -15
     for (i = 0; i < 5; i++) {
       backgrounds[i] = this.game.add.tileSprite(backgroundoffset, 0, 2400, gameWidth, 'background');
@@ -39,6 +40,9 @@ playGame.prototype = {
     map.addTilesetImage('tiles-2');
     map.addTilesetImage('GroundTile');
     map.addTilesetImage('LavaSpikes');
+    map.addTilesetImage('StreetSign');
+    map.addTilesetImage('RoadTile');
+    map.addTilesetImage('Taphouse');
 
     map.setCollisionByExclusion([ 13, 14, 15, 16, 46, 47, 48, 49, 50, 51 ]);
 
@@ -50,26 +54,12 @@ playGame.prototype = {
     layer.resizeWorld();
 
     this.game.physics.arcade.gravity.y = 250;
+    //invisble walls
+    //this.createInvisibleWalls()
 
     //Add the Drunk meter
-    var barConfig = {
-      x: 650,
-      y: 30,
-      bg: {
-        color: '#A7A9AB'
-      },
-      bar: {
-        color: '#D6DF23'
-      },
-      isFixedToCamera: true
-    };
-
-
-    drunkPercent = 20;
-    drunkBar = new HealthBar(this.game, barConfig);
-    drunkBar.setPercent(drunkPercent);
-
-    this.drunkDecay();
+    drunk = new Drunk();
+    drunk.makeBar(this.game);
 
     player = this.game.add.sprite(32, 32, 'dude');
     this.game.physics.enable(player, Phaser.Physics.ARCADE);
@@ -101,20 +91,21 @@ playGame.prototype = {
     addBadBeers(this.game)
   },
   update: function() {
-      console.log(player.x)
+    if(!drunk.stillAlive() || player.body.top > 790) {
+      this.game.state.start("StartScreen");
+    }
     this.game.physics.arcade.collide(player, layer);
+    this.game.physics.arcade.collide(player, wallLeft);
     this.game.physics.arcade.collide(averyCoin, layer);
     this.game.physics.arcade.collide(averyBeer, layer);
     this.game.physics.arcade.collide(badBeer, layer);
-    this.game.physics.arcade.overlap(player, averyCoin, collectAveryCoin, null, this);
-    this.game.physics.arcade.overlap(player, averyBeer, collectAveryBeer, null, this);
-    this.game.physics.arcade.overlap(player, badBeer, hitBadBeer, null, this);
+    this.game.physics.arcade.overlap(player, averyCoin, this.collectCoin, null, this);
+    this.game.physics.arcade.overlap(player, averyBeer, this.collectBeer, null, this);
+    this.game.physics.arcade.overlap(player, badBeer, this.collideBadBeer, null, this);
 
     player.body.velocity.x = 0;
 
-    if(drunkPercent >= 90) {
-      normalControls = false;
-    }
+    normalControls = drunk.getNormalControlMode();
 
     if (cursors.left.isDown)
     {
@@ -167,18 +158,33 @@ playGame.prototype = {
       jumpTimer = this.game.time.now + 750;
     }
   },
-  drunkDecay: function() {
-    this.game.time.events.loop(Phaser.Timer.SECOND, function() {
-      drunkPercent = drunkPercent - 1;
-      drunkBar.setPercent(drunkPercent);
-    },
-    this);
-  },
   render: function() {
 
     // game.debug.text(game.time.physicsElapsed, 32, 32);
     // game.debug.body(player);
     // game.debug.bodyInfo(player, 16, 24);
 
+  },
+  createInvisibleWalls: function() {
+    wallLeft = this.game.add.tileSprite((8*4), 0, 8, this.game.height, 'blank');
+    //wallRight = this.game.add.tileSprite(this.game.width-(8*4), 0, 8, this.game.height, 'blank');
+
+    //this.game.physics.enable([ wallLeft, wallRight ], Phaser.Physics.ARCADE);
+    this.game.physics.enable([wallLeft], Phaser.Physics.ARCADE);
+
+    wallLeft.body.immovable = true;
+    wallLeft.body.allowGravity = false;
+
+    // wallRight.body.immovable = true;
+    // wallRight.body.allowGravity = false;
+  },
+  collectCoin: function(player, star) {
+    collectAveryCoin(star);
+  },
+  collideBadBeer: function(player, beer) {
+    hitBadBeer(beer, drunk);
+  },
+  collectBeer: function(player, beer) {
+    collectAveryBeer(beer, drunk);
   }
 }

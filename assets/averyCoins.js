@@ -49,7 +49,8 @@ function addAveryCoins(game){
     //     addCan(currLocation, 100)
     // }
 }
-function collectAveryCoin (player, star) {
+
+function collectAveryCoin (star) {
     averyCoins += 1;
     scoreText.text = scoreString + averyCoins;
     star.kill();
@@ -103,9 +104,8 @@ function addAveryBeers(game){
     // }
 }
 
-function collectAveryBeer (player, beer) {
-    drunkPercent += beer.abv
-    drunkBar.setPercent(drunkPercent);
+function collectAveryBeer (beer, drunk) {
+    drunk.adjust(beer.abv);
     messageText.text = "Scored a "+beer.AveryName+"! +"+beer.abv;
     beer.kill();
     setTimeout(function(){
@@ -145,18 +145,12 @@ function addBadBeers(game){
     // }
 }
 
-function hitBadBeer(player, beer) {
-    if(drunkBar.percent == 0){
-        player.kill()
-    } else {
-        drunkPercent = 0
-        drunkBar.setPercent(drunkPercent);
-        messageText.text = "Shitty Beer X_X...Sober up!";
-        console.log(messageText)
-        beer.kill();
-        setTimeout(function(){
-            messageText.text = "";
-        }, 3000);
-    }
+
+function hitBadBeer(beer, drunk) {
+    messageText.text = "Shitty Beer X_X...Sober up!";
+    setTimeout(function(){
+        messageText.text = "";
+    }, 3000);
+    drunk.clear();
     beer.kill();
 }
