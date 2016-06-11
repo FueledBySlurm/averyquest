@@ -8,13 +8,16 @@ var tapRoom = function(){
             this.populatFood();
         },
         validate: function(beer){
+            if (acceptableBeerList.indexOf(beer.id) < 1){
+                return false;
+            }
             if(beer.id && beer.abv && beer.name){
                 return true;
             }
             return false;
         },
         addBeer: function(beer){
-            if (!this.validate(beer)){
+            if (!this.validate(beer) || this.beers.length > 30){
                 return
             }
             var unique = true;
@@ -51,11 +54,11 @@ var tapRoom = function(){
         },
         populateTapRoom: function(){
             $.ajax({
-                "url": "http://apis.mondorobot.com/taproom/on-tap",
+                "url": "http://apis.mondorobot.com/beers",
                 "dataType": "json",
                 "async": false,
                 success: function(data){
-                    $.each(data.beer_list.beers, function(i, beer){
+                    $.each(data.beers, function(i, beer){
                         app.addBeer(beer)
                     });
                 },
@@ -120,5 +123,21 @@ var tapRoom = function(){
 
 }
 $(document).ready(function(){
+    acceptableBeerList = [
+        "ale-to-the-chief",
+        "barrel-aged-series",
+        "joe-s-pils",
+        "ellie-s-brown-ale",
+        "hog-heaven",
+        "liliko-i-kepolo",
+        "Mephistopheles",
+        "old-jubiliation-ale",
+        "out-of-bounds-stout",
+        "perzik-saison",
+        "Raja",
+        "Barrel-Aged Sour",
+        "the-czar",
+
+    ]
     tapRoom();
 })

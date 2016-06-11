@@ -89,7 +89,11 @@ playGame.prototype = {
     jumpButton = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
     scoreString = 'Avery Coins: ';
-    scoreText = this.game.add.text(10, 10, scoreString + averyCoins, { font: '34px Arial', fill: '#fff' });
+    scoreText = this.game.add.text(10, 10, scoreString + averyCoins, { font: '25px Arial', fill: '#000' });
+    scoreText.fixedToCamera = true
+
+    messageString = '';
+    scoreText = this.game.add.text(10, 10, messageString, { font: '25px Arial', fill: '#000' });
     scoreText.fixedToCamera = true
 
     addAveryCoins(this.game)
