@@ -114,6 +114,7 @@ var tapRoom = function(){
         },
         "food": app.food,
     }
+
 }
 $(document).ready(function(){
     tapRoom();

@@ -4,7 +4,7 @@ function addAveryCoins(game){
     averyCoin.enableBody = true;
     for (var i = 0; i < 12; i++)
     {
-        var star = averyCoin.create(i * 70, 0, 'starSmall');
+        var star = averyCoin.create(i * 70, 0, 'averyCoin');
         star.body.gravity.y = 6;
         star.body.bounce.y = 0.7 + Math.random() * 0.2;
     }
@@ -22,17 +22,18 @@ function addAveryBeers(game){
     averyBeer.enableBody = true;
     for (var i = 0; i < 12; i++)
     {
-        var star = averyBeer.create(i * 65, 0, 'starBig');
-        beerListIndex = Math.floor(Math.random() * tapRoom.beers.list.length) + 1
-        star.hopValue = tapRoom.beers.list[beerListIndex].hopValue;
-        star.body.gravity.y = 6;
-        star.body.bounce.y = 0.7 + Math.random() * 0.2;
+        var beer = averyBeer.create(i * 65, 0, 'starBig');
+        beer.body.gravity.y = 6;
+        beer.body.bounce.y = 0.7 + Math.random() * 0.2;
+        beerListIndex = Math.floor(Math.random() * tapRoom.beers.list.length)
+        beer.abv = tapRoom.beers.list[beerListIndex].hopValue;
+        beer.AveryName = tapRoom.beers.list[beerListIndex].name;
     }
 }
 
 function collectAveryBeer (player, beer) {
-    console.log(beer.hopValue)
-    myHealthBar.setPercent(50)
+    drunkPercent += beer.abv
+    drunkBar.setPercent(drunkPercent);
     beer.kill();
 }
 
@@ -40,7 +41,7 @@ function collectAveryBeer (player, beer) {
 function addBadBeers(game){
     badBeer = game.add.group();
     badBeer.enableBody = true;
-    for (var i = 0; i < 12; i++)
+    for (var i = 0; i < 5; i++)
     {
         var star = badBeer.create(i * 80, 0, 'droid');
         star.body.gravity.y = 6;
@@ -49,6 +50,10 @@ function addBadBeers(game){
 }
 
 function hitBadBeer(player, beer) {
-    myHealthBar.setPercent(0)
+    if(drunkBar.percent == 0){
+        player.kill()
+    } else {
+        drunkBar.setPercent(0);
+    }
     beer.kill();
 }

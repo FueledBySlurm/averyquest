@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <title>hello phaser!</title>
-        <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
         <script src="assets/data.js"></script>
         <script src="//cdn.jsdelivr.net/phaser/2.4.8/phaser.js"></script>
         <script src="assets/phaserHealthbar.js"></script>
@@ -11,23 +11,6 @@
     </head>
     <body>
       <script type="text/javascript">
-    window.onload = function() {
-      var gameWidth = 800;
-      var gameHeight = 600;
-
-      var game = new Phaser.Game(gameWidth, gameHeight, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
-
-      function preload() {
-
-          game.load.tilemap('level1', 'assets/games/starstruck/level1.json', null, Phaser.Tilemap.TILED_JSON);
-          game.load.image('tiles-1', 'assets/games/starstruck/tiles-1.png');
-          game.load.spritesheet('dude', 'assets/games/starstruck/dude.png', 32, 48);
-          game.load.spritesheet('droid', 'assets/games/starstruck/droid.png', 32, 32);
-          game.load.image('starSmall', 'assets/games/starstruck/star.png');
-          game.load.image('starBig', 'assets/games/starstruck/star2.png');
-          game.load.image('background', 'assets/BG.png');
-
-      }
 
       var map;
       var tileset;
@@ -41,6 +24,26 @@
       var drunkPercent;
       var drunkThreshold = 90;
       var normalControls = true;
+
+
+    function startGame() {
+      var gameWidth = 800;
+      var gameHeight = 600;
+
+      var game = new Phaser.Game(gameWidth, gameHeight, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
+
+      function preload() {
+
+          game.load.tilemap('level1', 'assets/games/starstruck/level1.json', null, Phaser.Tilemap.TILED_JSON);
+          game.load.image('tiles-1', 'assets/games/starstruck/tiles-1.png');
+          game.load.spritesheet('dude', 'assets/games/starstruck/dude.png', 32, 48);
+          game.load.spritesheet('droid', 'assets/games/starstruck/droid.png', 32, 32);
+          game.load.image('averyCoin', 'assets/averyCoin.png');
+          game.load.image('starBig', 'assets/games/starstruck/star2.png');
+          game.load.image('background', 'assets/BG.png');
+
+      }
+
 
       function create() {
 
@@ -78,6 +81,7 @@
             },
           };
 
+
           drunkPercent = 20;
           drunkBar = new HealthBar(this.game, barConfig);
           drunkBar.setPercent(drunkPercent);
@@ -93,13 +97,15 @@
           player.animations.add('turn', [4], 20, true);
           player.animations.add('right', [5, 6, 7, 8], 10, true);
 
-          addAveryCoins(game)
-          addAveryBeers(game)
-          addBadBeers(game)
+
           game.camera.follow(player);
 
           cursors = game.input.keyboard.createCursorKeys();
           jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+
+          addAveryCoins(game)
+          addAveryBeers(game)
+          addBadBeers(game)
 
       }
 
