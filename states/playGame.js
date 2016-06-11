@@ -3,6 +3,7 @@ var playGame = function(game) {
   var tileset;
   var layer;
   var player;
+  var nautCt
   facing = 'left';
   jumpTimer = 0;
   var cursors;
@@ -63,10 +64,9 @@ playGame.prototype = {
 
     player = this.game.add.sprite(32, 32, 'dude');
     this.game.physics.enable(player, Phaser.Physics.ARCADE);
-    
-    nautCt = this.game.add.image(4920, 400, 'StreetSign')
 
-    //this.game.physics.enable(player, Phaser.Physics.ARCADE);
+    nautCt = this.game.add.image(4920, 400, 'StreetSign')
+    this.game.physics.enable(nautCt, Phaser.Physics.ARCADE);
 
     player.body.bounce.y = 0.2;
     player.body.collideWorldBounds = false;
@@ -111,9 +111,11 @@ playGame.prototype = {
     this.game.physics.arcade.collide(averyCoin, layer);
     this.game.physics.arcade.collide(averyBeer, layer);
     this.game.physics.arcade.collide(badBeer, layer);
+    this.game.physics.arcade.collide(nautCt, layer);
     this.game.physics.arcade.overlap(player, averyCoin, this.collectCoin, null, this);
     this.game.physics.arcade.overlap(player, averyBeer, this.collectBeer, null, this);
     this.game.physics.arcade.overlap(player, badBeer, this.collideBadBeer, null, this);
+    this.game.physics.arcade.overlap(player, nautCt, this.winGame, null, this);
 
     player.body.velocity.x = 0;
 
@@ -193,5 +195,8 @@ playGame.prototype = {
   },
   collectBeer: function(player, beer) {
     collectAveryBeer(beer, drunk);
-  }
+  },
+  winGame: function(player, nautCt) {
+    this.game.state.start("EndStory");
+  },
 }
