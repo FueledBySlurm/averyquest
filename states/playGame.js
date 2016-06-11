@@ -96,7 +96,7 @@ playGame.prototype = {
     addBadBeers(this.game)
   },
   update: function() {
-    if(!drunk.stillAlive() || player.body.top > 790) {
+    if(!drunk.stillAlive() || player.body.top > 540) {
       clearAveryCoin();
       this.game.state.start("GameOver");
     }
