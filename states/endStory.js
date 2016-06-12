@@ -22,7 +22,7 @@ endStory.prototype = {
 		},
 		this);
 
-		this.game.time.events.add(Phaser.Timer.SECOND*7, function() {
+		this.game.time.events.add(Phaser.Timer.SECOND*9, function() {
 			this.playTheGame();
 		},
 		this);
