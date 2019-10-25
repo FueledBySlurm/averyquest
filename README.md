@@ -18,3 +18,7 @@ http-server ~/averyquest
 brew filter used to get hoppy beers in the tap room
 uses this filter in conjunction with a beers ABV to reward "hop" bonus
 collect more hops to make Hop John jump higher
+
+
+####Avery Beer Logos
+Beer logos were downloaded via the "Brand Assets" link on the Avery Brewing website. It leads to the following site: https://brandfolder.com/averybrewing/brand

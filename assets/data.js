@@ -3,14 +3,74 @@ var tapRoom = function(){
         beers: [],
         food: [],
         init: function(){
-            this.populateTapRoom();
-            this.populateHoppyBeers();
-            this.populatFood();
+            beerData = [
+                {
+                    "id": 'white-rascal',
+                    "name": "White Rascal",
+                    "hoppy": false,
+                    "abv": 5.6,
+                    "label_image": {
+                        "original": "assets/beer_labels/WhiteRascal_Face_HighRes-50x92-9bd6f52.png"
+                    }
+            
+                },
+                {
+                    "id": 'avery-ipa',
+                    "name": "Avery IPA",
+                    "hoppy": true,
+                    "abv": 6.5,
+                    "label_image": {
+                        "original": "assets/beer_labels/AveryIPA_Face_HighRes-50x92-1d0bc01.png"
+                    }
+            
+                },
+                {
+                    "id": 'el-gose',
+                    "name": "El Gose",
+                    "hoppy": false,
+                    "abv": 4.5,
+                    "label_image": {
+                        "original": "assets/beer_labels/ElGose_Face_HighRes-50x92-72c8ec3.png"
+                    }
+            
+                },
+                {
+                    "id": 'lilikoi-kepolo',
+                    "name": "Liliko'i Kepolo",
+                    "hoppy": false,
+                    "abv": 5.4,
+                    "label_image": {
+                        "original": "assets/beer_labels/LilikoiKepolo_Face_HighRes-50x93-34e11b3.png"
+                    }
+            
+                },
+                {
+                    "id": 'hazyish-ipa',
+                    "name": "Hazyish IPA",
+                    "hoppy": true,
+                    "abv": 7.0,
+                    "label_image": {
+                        "original": "assets/beer_labels/HazyishIPA_Face_HighRes-50x92-05d0d3d.png"
+                    }
+            
+                },
+                {
+                    "id": "the-maharaja",
+                    "name": "The Maharaja",
+                    "hoppy": true,
+                    "abv": 10.0,
+                    "label_image": {
+                        "original": "assets/beer_labels/MaharajaIPA_Face_HighRes-50x92-6d0e465.png"
+                    }
+                },
+                
+            ]
+            console.log(beerData);
+            $.each(beerData, function(i, beer){
+                app.addBeer(beer)
+            })
         },
         validate: function(beer){
-            if (acceptableBeerList.indexOf(beer.id) < 1){
-                return false;
-            }
             if(beer.id && beer.abv && beer.name){
                 return true;
             }
@@ -46,66 +106,6 @@ var tapRoom = function(){
                 "hopValue": hopValue
             });
         },
-        addFood: function(food){
-            this.food.push({
-                "name": food.name,
-                "price": parseInt(food.price)
-            })
-        },
-        populateTapRoom: function(){
-            $.ajax({
-                "url": "http://apis.mondorobot.com/beers",
-                "dataType": "json",
-                "async": false,
-                success: function(data){
-                    $.each(data.beers, function(i, beer){
-                        beer.hoppy = false
-                        app.addBeer(beer)
-                    });
-                },
-                "error": function(){
-                    console.log("falied to fetch hoppy beers")
-                }
-            });
-        },
-        populateHoppyBeers: function(){
-            $.ajax({
-                "url": "http://apis.mondorobot.com/beers",
-                "dataType": "json",
-                "async": false,
-                "data": {
-                    "categories": "Hop-forward"
-                },
-                success: function(data){
-                    $.each(data.beers, function(i, beer){
-                        beer.hoppy = true
-                        app.addBeer(beer)
-                    });
-                },
-                "error": function(){
-                    console.log("falied to fetch hoppy beers")
-                }
-            });
-        },
-        populatFood: function(){
-            $.ajax({
-                url: "http://apis.mondorobot.com/taproom/menu",
-                dataType: "json",
-                "async": false,
-                success: function(data){
-                    $.each(data.menu.menu_sections, function(i, section){
-                        if (section.title == "Dining Menu"){
-                            $.each(section.menu_items, function(i, foodItem){
-                                app.addFood(foodItem)
-                            });
-                        }
-                    });
-                },
-                error: function(){
-                    console.log("falied to fetch populatFood")
-                }
-            });
-        }
     }
     app.init()
     tapRoom = {
@@ -118,28 +118,10 @@ var tapRoom = function(){
                 });
                 return returnVal
             }
-        },
-        "food": app.food,
+        }
     }
 
 }
 $(document).ready(function(){
-    acceptableBeerList = [
-        "ale-to-the-chief",
-        "barrel-aged-series",
-        "joe-s-pils",
-        "ellie-s-brown-ale",
-        "hog-heaven",
-        "liliko-i-kepolo",
-        "Mephistopheles",
-        "old-jubiliation-ale",
-        "out-of-bounds-stout",
-        "perzik-saison",
-        "Raja",
-        "Barrel-Aged Sour",
-        "the-czar",
-        "the-maharaja",
-
-    ]
     tapRoom();
 })
