@@ -109,7 +109,7 @@ function addAveryBeers(game){
 }
 
 function collectAveryBeer (beer, drunk) {
-    drunk.adjust(beer.abv);
+    drunk.adjust(beer.abv * 3);
     messageText.text = "Scored a "+beer.AveryName+"! +"+beer.abv+"%ABV";
     beer.kill();
     setTimeout(function(){

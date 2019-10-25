@@ -33,7 +33,7 @@ Drunk.prototype = {
   },
 
   getNormalControlMode: function() {
-    if(drunkPercent >= 90) {
+    if(drunkPercent >= 70) {
       return false;
     }
     else {
