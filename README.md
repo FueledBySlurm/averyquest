@@ -1,6 +1,17 @@
 # AVERYQUEST  
-## IPAS AND APIS  
-![alt tag](slurm.jpg)  
+![title screen](assets/TitleScreen.png)
+
+## Demo 
+[Averyquest Demo](https://youtu.be/bFAfmPS-jmY)
+
+## Try it out!
+[Play Averyquest](http://averyquest.mikeboice.com)
+
+
+
+## IPAS AND APIS Hackathon  
+![slurm](slurm.jpg)  
+
 
 ### Setup    
 npm install http-server -g    
