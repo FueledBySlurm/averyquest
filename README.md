@@ -1,24 +1,28 @@
 # AVERYQUEST  
 ## IPAS AND APIS  
 ![alt tag](slurm.jpg)  
-####setup    
+
+### Setup    
 npm install http-server -g    
-http-server ~/averyquest  
+cd averyquest    
+http-server .  
 
 
-####API Usage
+#### Avery Beer Logos
+Beer logos were downloaded via the "Brand Assets" link on the Avery Brewing website. It leads to the following site: https://brandfolder.com/averybrewing/brand
 
-#####http://apis.mondorobot.com/beers to populate game beers.  
+
+### API Usage
+NOTE: apis.mondorobot.com has been taken down. Using static data now.
+
+1. http://apis.mondorobot.com/beers to populate game beers.  
 - higher ABVs get Hop Johnson more drunk
 - label is used for the game icon
 - uses name and id
 
 
-####http://apis.mondorobot.com/beers?categories=Hop-forward
+2.  http://apis.mondorobot.com/beers?categories=Hop-forward
 brew filter used to get hoppy beers in the tap room
 uses this filter in conjunction with a beers ABV to reward "hop" bonus
 collect more hops to make Hop John jump higher
 
-
-####Avery Beer Logos
-Beer logos were downloaded via the "Brand Assets" link on the Avery Brewing website. It leads to the following site: https://brandfolder.com/averybrewing/brand
